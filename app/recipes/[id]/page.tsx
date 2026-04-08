@@ -87,7 +87,7 @@ export default async function RecipeDetailPage({
 					<div className="rounded-xl border bg-slate-50 p-4">
 						<h2 className="mb-2 text-lg font-semibold">Ingredients</h2>
 						{ingredients.length === 0 ? (
-							<p className="text-sm text-slate-500">Chua co du lieu.</p>
+							<p className="text-sm text-slate-500">No data available.</p>
 						) : (
 							<ul className="list-disc space-y-1 pl-4 text-sm text-slate-700">
 								{ingredients.map((ingredient, index) => (
@@ -100,7 +100,7 @@ export default async function RecipeDetailPage({
 					<div className="rounded-xl border bg-slate-50 p-4">
 						<h2 className="mb-2 text-lg font-semibold">Steps</h2>
 						{steps.length === 0 ? (
-							<p className="text-sm text-slate-500">Chua co du lieu.</p>
+							<p className="text-sm text-slate-500">No data available.</p>
 						) : (
 							<ol className="list-decimal space-y-1 pl-4 text-sm text-slate-700">
 								{steps.map((step, index) => (

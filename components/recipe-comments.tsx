@@ -35,12 +35,12 @@ export function RecipeComments({ recipeId, initialComments }: RecipeCommentsProp
       const payload = (await response.json()) as { success?: boolean; error?: string };
 
       if (!response.ok || !payload.success) {
-        throw new Error(payload.error ?? "Khong the xoa comment");
+        throw new Error(payload.error ?? "Could not delete comment");
       }
 
       setComments((previous) => previous.filter((comment) => comment.id !== commentId));
     } catch (deleteError: unknown) {
-      const message = deleteError instanceof Error ? deleteError.message : "Da xay ra loi";
+      const message = deleteError instanceof Error ? deleteError.message : "Something went wrong";
       setError(message);
     } finally {
       setDeletingCommentId(null);

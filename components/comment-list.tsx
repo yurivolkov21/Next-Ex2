@@ -10,7 +10,7 @@ interface CommentListProps {
 
 export function CommentList({ comments, deletingCommentId, onDelete }: CommentListProps) {
 	if (comments.length === 0) {
-		return <p className="text-sm text-slate-500">Chua co comment nao.</p>;
+		return <p className="text-sm text-slate-500">No comments yet.</p>;
 	}
 
 	return (
@@ -21,7 +21,7 @@ export function CommentList({ comments, deletingCommentId, onDelete }: CommentLi
 						<div>
 							<p className="text-sm text-slate-800">{comment.content}</p>
 							<p className="mt-1 text-xs text-slate-500">
-								{new Date(comment.created_at).toLocaleString("vi-VN")}
+								{new Date(comment.created_at).toLocaleString("en-US")}
 							</p>
 						</div>
 

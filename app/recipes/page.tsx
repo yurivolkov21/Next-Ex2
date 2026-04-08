@@ -90,7 +90,7 @@ export default async function RecipesPage({
 						id="q"
 						name="q"
 						defaultValue={q}
-						placeholder="Nhap ten mon an..."
+						placeholder="Enter recipe title..."
 						className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-slate-500"
 					/>
 					<input type="hidden" name="limit" value={String(limit)} />
@@ -112,7 +112,7 @@ export default async function RecipesPage({
 
 			{recipes.length === 0 ? (
 				<div className="rounded-xl border border-dashed bg-white p-8 text-center text-slate-600">
-					Khong tim thay recipes.
+					No recipes found.
 				</div>
 			) : (
 				<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">

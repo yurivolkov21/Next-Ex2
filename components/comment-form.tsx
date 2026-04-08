@@ -17,7 +17,7 @@ export function CommentForm({ recipeId, onCreated }: CommentFormProps) {
 		event.preventDefault();
 
 		if (!content.trim()) {
-			setError("Noi dung comment khong duoc de trong");
+			setError("Comment content cannot be empty");
 			return;
 		}
 
@@ -37,13 +37,13 @@ export function CommentForm({ recipeId, onCreated }: CommentFormProps) {
 			};
 
 			if (!response.ok || !payload.data) {
-				throw new Error(payload.error ?? "Khong the tao comment");
+				throw new Error(payload.error ?? "Could not create comment");
 			}
 
 			onCreated(payload.data);
 			setContent("");
 		} catch (submitError: unknown) {
-			const message = submitError instanceof Error ? submitError.message : "Da xay ra loi";
+			const message = submitError instanceof Error ? submitError.message : "Something went wrong";
 			setError(message);
 		} finally {
 			setIsSubmitting(false);
@@ -53,7 +53,7 @@ export function CommentForm({ recipeId, onCreated }: CommentFormProps) {
 	return (
 		<form onSubmit={handleSubmit} className="space-y-2">
 			<label htmlFor="comment-content" className="text-sm font-medium text-slate-700">
-				Them comment
+				Add comment
 			</label>
 			<textarea
 				id="comment-content"
@@ -68,7 +68,7 @@ export function CommentForm({ recipeId, onCreated }: CommentFormProps) {
 					disabled={isSubmitting}
 					className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60"
 				>
-					{isSubmitting ? "Dang gui..." : "Send"}
+					{isSubmitting ? "Sending..." : "Send"}
 				</button>
 				{error ? <p className="text-xs text-red-600">{error}</p> : null}
 			</div>

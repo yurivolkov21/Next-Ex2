@@ -47,12 +47,12 @@ export function LikeButton({ recipeId, initialLikes }: LikeButtonProps) {
 			const payload = (await response.json()) as { likes?: number; error?: string };
 
 			if (!response.ok) {
-				throw new Error(payload.error ?? "Khong the like");
+				throw new Error(payload.error ?? "Could not like this recipe");
 			}
 
 			setLikes(Number(payload.likes ?? likes));
 		} catch (likeError: unknown) {
-			const message = likeError instanceof Error ? likeError.message : "Da xay ra loi";
+			const message = likeError instanceof Error ? likeError.message : "Something went wrong";
 			setError(message);
 		} finally {
 			setIsSubmitting(false);
@@ -67,7 +67,7 @@ export function LikeButton({ recipeId, initialLikes }: LikeButtonProps) {
 				disabled={isSubmitting}
 				className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60"
 			>
-				{isSubmitting ? "Dang like..." : buttonLabel}
+				{isSubmitting ? "Liking..." : buttonLabel}
 			</button>
 			{error ? <p className="text-xs text-red-600">{error}</p> : null}
 		</div>

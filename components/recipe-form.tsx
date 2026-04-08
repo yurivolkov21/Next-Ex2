@@ -25,7 +25,7 @@ export function RecipeForm() {
 		setError(null);
 
 		if (!title.trim() || !description.trim()) {
-			setError("Title va description la bat buoc.");
+			setError("Title and description are required.");
 			return;
 		}
 
@@ -50,13 +50,13 @@ export function RecipeForm() {
 			};
 
 			if (!response.ok) {
-				throw new Error(payload.error ?? "Khong the tao recipe");
+				throw new Error(payload.error ?? "Could not create recipe");
 			}
 
 			router.push(`/recipes/${payload.data?.id ?? ""}`);
 			router.refresh();
 		} catch (submitError: unknown) {
-			const message = submitError instanceof Error ? submitError.message : "Da xay ra loi";
+			const message = submitError instanceof Error ? submitError.message : "Something went wrong";
 			setError(message);
 		} finally {
 			setIsSubmitting(false);
@@ -94,7 +94,7 @@ export function RecipeForm() {
 
 			<div>
 				<label htmlFor="ingredients" className="mb-1 block text-sm font-medium text-slate-700">
-					Ingredients (moi dong 1 nguyen lieu)
+					Ingredients (one item per line)
 				</label>
 				<textarea
 					id="ingredients"
@@ -107,7 +107,7 @@ export function RecipeForm() {
 
 			<div>
 				<label htmlFor="steps" className="mb-1 block text-sm font-medium text-slate-700">
-					Steps (moi dong 1 buoc)
+					Steps (one step per line)
 				</label>
 				<textarea
 					id="steps"
@@ -137,7 +137,7 @@ export function RecipeForm() {
 				disabled={isSubmitting}
 				className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60"
 			>
-				{isSubmitting ? "Dang tao..." : "Create Recipe"}
+				{isSubmitting ? "Creating..." : "Create Recipe"}
 			</button>
 		</form>
 	);
